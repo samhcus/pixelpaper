@@ -5,7 +5,7 @@ import DownloadPage from './DownloadPage'
 import './index.css'
 import './download.css'
 
-const downloadHome = import.meta.env.VITE_DOWNLOAD_HOME === 'true'
+const downloadHome = import.meta.env.MODE === 'site' || import.meta.env.VITE_DOWNLOAD_HOME === 'true'
 const root = downloadHome || window.location.pathname === '/download' ? <DownloadPage /> : <App />
 
 if ('serviceWorker' in navigator && downloadHome) {
