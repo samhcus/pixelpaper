@@ -2,7 +2,7 @@ import { ArrowDownToLine, Check, Code2, Command, MonitorDown, Package, ShieldChe
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 
-const version = '1.0.0'
+const version = '1.0.1'
 const releases = 'https://github.com/samhcus/wallpapers/releases/latest/download'
 
 const platforms = [

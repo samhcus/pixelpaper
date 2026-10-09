@@ -1,7 +1,7 @@
 {
   "name": "wallpapers",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple wallpaper app created by Samuel.",
   "author": {
     "name": "Samuel H. Cus",
@@ -12,8 +12,8 @@
     "dev": "concurrently -k -n api,web \"node --env-file-if-exists=.env --watch server/index.mjs\" \"vite --host 127.0.0.1\"",
     "assets": "node scripts/build_gallery.mjs",
     "build": "npm run build:app && tsc -b",
-    "build:app": "npm run assets && VITE_DOWNLOAD_HOME=false vite build",
-    "build:site": "npm run assets && VITE_DOWNLOAD_HOME=true vite build",
+    "build:app": "npm run assets && vite build --mode app",
+    "build:site": "npm run assets && vite build --mode site",
     "desktop:dist": "npm run build:app && electron-builder --config electron-builder.yml",
     "start": "node --env-file-if-exists=.env server/index.mjs",
     "typecheck": "tsc -b",

@@ -31,7 +31,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build:app
-      - run: npx electron-builder --config electron-builder.yml --${{ matrix.target }} --${{ matrix.arch }}
+      - run: npx electron-builder --config electron-builder.yml --publish never --${{ matrix.target }} --${{ matrix.arch }}
       - uses: actions/upload-artifact@v4
         with:
           name: wallpapers-${{ matrix.target }}-${{ matrix.arch }}

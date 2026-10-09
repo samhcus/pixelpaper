@@ -8,7 +8,7 @@ The collection comes from the repository's 31 original images. Thumbnails are op
 ## Download the app
 
 Use the platform links on [wallpapers.samhc.us](https://wallpapers.samhc.us). The
-current release is version 1.0.0 and ships macOS, Windows, and Linux packages. The
+current release is version 1.0.1 and ships macOS, Windows, and Linux packages. The
 app is local-first: it stores creations on the computer where it is running and stops
 its local service when the app closes. The app is not a hosted web service.
 

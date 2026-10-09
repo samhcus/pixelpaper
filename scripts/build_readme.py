@@ -3,7 +3,7 @@ import random
 
 # Configuration
 IMAGE_EXTENSIONS = ('.png', '.jpg', '.jpeg', '.gif')
-EXCLUDE_DIRS = ('.git', '.github', 'scripts')
+EXCLUDE_DIRS = ('.git', '.github', 'scripts', 'desktop')
 MAIN_README_PATH = 'README.md'
 SHOWCASE_COUNT = 2
 COLUMNS = 2
