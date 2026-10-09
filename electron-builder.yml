@@ -1,25 +1,20 @@
-appId: us.samhc.wallpapers
-productName: Wallpapers
-artifactName: Wallpapers-${os}-${arch}.${ext}
+appId: us.samhc.pixelpaper
+productName: Pixelpaper
+artifactName: Pixelpaper-${os}-${arch}.${ext}
 directories:
   output: artifacts
   buildResources: desktop
-asar: false
+asar: true
 files:
   - dist/**/*
   - server/**/*
   - desktop/**/*
-  - public/**/*
-  - ai-generated/**/*
-  - ascii-art/**/*
-  - pixel-art/**/*
-  - space/**/*
   - package.json
 extraMetadata:
   main: desktop/main.cjs
 asarUnpack:
-  - node_modules/sharp/**/*
-  - node_modules/@img/**/*
+  - server/**/*
+  - node_modules/**/*
 mac:
   target: [dmg, zip]
   category: public.app-category.graphics-design

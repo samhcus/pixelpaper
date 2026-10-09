@@ -8,6 +8,8 @@ import { createHorde, ProviderError, sizes } from './horde.mjs'
 const root = fileURLToPath(new URL('../', import.meta.url))
 const idPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 const active = job => ['queued', 'processing'].includes(job.status)
+const PIXEL_SUFFIX = ' pixel art only, low resolution pixel grid, crisp hard edges, limited warm palette, no photorealism, no 3D render, no text.'
+const forbidden = /\b(?:photorealistic|photograph|photography|3d\s+render|vector\s+art|oil\s+painting)\b/i
 export async function createApp({ provider = createHorde(), dataDir = process.env.DATA_DIR || path.join(root, '.data'), poll = true } = {}) {
   const app = express()
   const jobs = new Map()
@@ -83,6 +85,9 @@ export async function createApp({ provider = createHorde(), dataDir = process.en
   app.use((req, res, next) => {
     res.setHeader('X-Content-Type-Options', 'nosniff')
     res.setHeader('Referrer-Policy', 'same-origin')
+    res.setHeader('X-Frame-Options', 'DENY')
+    res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()')
+    res.setHeader('Content-Security-Policy', "default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self' https://aihorde.net; object-src 'none'; base-uri 'none'; frame-ancestors 'none'")
     if (req.path.startsWith('/api')) res.setHeader('Cache-Control', 'no-store')
     if (!['GET', 'HEAD', 'OPTIONS'].includes(req.method) && req.headers.origin) {
       let origin
@@ -98,15 +103,17 @@ export async function createApp({ provider = createHorde(), dataDir = process.en
     const prompt = typeof req.body?.prompt === 'string' ? req.body.prompt.trim() : ''
     const orientation = req.body?.orientation
     if (prompt.length < 3 || prompt.length > 2000 || !Object.hasOwn(sizes, orientation)) {
-      return res.status(400).json({ message: 'Describe your wallpaper in 3–2,000 characters and choose a valid orientation.' })
+      return res.status(400).json({ message: 'Describe your pixel wallpaper in 3–2,000 characters and choose a valid orientation.' })
     }
+    if (forbidden.test(prompt)) return res.status(400).json({ message: 'Pixelpaper makes pixel art only. Remove photo, 3D, vector, or painting directions.' })
+    const pixelPrompt = `${prompt}${PIXEL_SUFFIX}`
     const existing = [...jobs.values()].find(active)
     if (submitting || existing) return res.status(409).json({ message: 'A wallpaper is already being generated.', job: existing ? publicJob(existing) : undefined })
     submitting = true
-    const job = { id: randomUUID(), prompt, orientation, status: 'queued', createdAt: new Date().toISOString() }
+    const job = { id: randomUUID(), prompt: pixelPrompt, orientation, status: 'queued', createdAt: new Date().toISOString() }
     try {
       await save(job)
-      job.providerId = await provider.submit(prompt, orientation)
+      job.providerId = await provider.submit(pixelPrompt, orientation)
       await save(job)
       res.status(202).json(publicJob(job))
     } catch (error) {
@@ -139,9 +146,6 @@ export async function createApp({ provider = createHorde(), dataDir = process.en
     res.json(publicJob(job))
   })
   app.use('/generated', express.static(imageDir, { dotfiles: 'deny', maxAge: '1y', immutable: true }))
-  for (const category of ['pixel-art', 'space', 'ascii-art', 'ai-generated']) {
-    app.use(`/wallpapers/${category}`, express.static(path.join(root, category), { index: false, dotfiles: 'deny', maxAge: '1d', extensions: false }))
-  }
   app.use('/api', (_req, res) => res.status(404).json({ message: 'API endpoint not found.' }))
   app.use(express.static(path.join(root, 'dist')))
   app.get('/{*path}', (_req, res) => res.sendFile(path.join(root, 'dist/index.html')))

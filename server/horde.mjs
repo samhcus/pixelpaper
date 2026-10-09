@@ -14,7 +14,7 @@ export function createHorde({ fetchImpl = fetch, apiKey = process.env.HORDE_API_
       response = await fetchImpl(`${base}${endpoint}`, {
         ...options, signal: AbortSignal.timeout(30000),
         headers: { 'Content-Type': 'application/json', apikey: apiKey,
-          'Client-Agent': 'wallpapers:1.0:https://github.com/samhcus/wallpapers', ...options.headers },
+          'Client-Agent': 'pixelpaper:1.1:https://github.com/samhcus/wallpapers', ...options.headers },
       })
     } catch { throw new ProviderError('The free generator is temporarily unreachable. Please try again.') }
     if (!response.ok) {

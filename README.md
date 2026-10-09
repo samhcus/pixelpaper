@@ -1,57 +1,28 @@
 <div align="center">
 
-# wallpapers
+# Pixelpaper
 
-**Personal wallpaper collection. Pixel art heavy.**
+**A cozy pixel art wallpaper studio, created with love by Samuel.**
 
-<code>31 wallpapers</code> &nbsp; <code>Last update: May 4, 2026</code>
+<code>25 pixel art examples</code> &nbsp; <code>Desktop app · v1.1.0</code>
 
 </div>
 
-> [!NOTE]
-> This README is auto-generated. All files are named `<palette>-<subject>-<nn>.ext` so you can sort by color or vibe at a glance.
+Pixelpaper is a focused pixel art app for tiny cities, warm interiors, night markets, and quiet scenes. The public [download page](https://wallpapers.samhc.us) shows Samuel’s examples; every downloaded app starts with a clean shelf for its owner.
 
-## Wallpapers app
+## Download
 
-Download the packaged desktop app from [wallpapers.samhc.us](https://wallpapers.samhc.us).
-The public site is only a static download page. The gallery, describe-a-new-image
-composer, local Creations storage, and free AI Horde generation run inside the app
-only while you have it open.
+Download the packaged app at [wallpapers.samhc.us](https://wallpapers.samhc.us). Release artifacts include SHA-256 checksums. macOS and Windows packages are currently unsigned.
 
-To run the source version locally:
+## Source
 
 ```bash
 npm ci
 npm run dev
 ```
 
-Open http://localhost:5173. No API key is required. See [APP.md](APP.md) for local
-startup, desktop packaging, storage, and verification.
+Open `http://localhost:5173`. See [APP.md](APP.md) for generation, editor, storage, packaging, and verification details.
 
-## Showcase
+## Collection
 
-<table>
-  <tr>
-    <td align="center"><img src="ascii-art/mono-ascii-02.png" width="400"><br><sub>ascii-art/mono-ascii-02.png</sub></td>
-    <td align="center"><img src="pixel-art/blue-japan-shopfront-01.png" width="400"><br><sub>pixel-art/blue-japan-shopfront-01.png</sub></td>
-  </tr>
-  <tr>
-    <td align="center"><img src="ascii-art/mono-ascii-01.png" width="400"><br><sub>ascii-art/mono-ascii-01.png</sub></td>
-    <td align="center"><img src="pixel-art/teal-ancient-treehouse-01.png" width="400"><br><sub>pixel-art/teal-ancient-treehouse-01.png</sub></td>
-  </tr>
-  <tr>
-    <td align="center"><img src="space/multi-spaceship-astronaut-01.jpg" width="400"><br><sub>space/multi-spaceship-astronaut-01.jpg</sub></td>
-    <td align="center"><img src="ai-generated/nqita-office-pink-01.png" width="400"><br><sub>ai-generated/nqita-office-pink-01.png</sub></td>
-  </tr>
-  <tr>
-    <td align="center"><img src="ai-generated/nqita-office-bodyguard-01.png" width="400"><br><sub>ai-generated/nqita-office-bodyguard-01.png</sub></td>
-    <td></td>
-  </tr>
-</table>
-
-## Categories
-
-- [ai-generated](./ai-generated/)
-- [ascii-art](./ascii-art/)
-- [pixel-art](./pixel-art/)
-- [space](./space/)
+The repository keeps the original source collection under `pixel-art/`, `space/`, `ascii-art/`, and `ai-generated/` for the public example page. Those assets are excluded from the downloaded app payload.

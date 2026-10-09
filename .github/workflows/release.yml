@@ -34,7 +34,7 @@ jobs:
       - run: npx electron-builder --config electron-builder.yml --publish never --${{ matrix.target }} --${{ matrix.arch }}
       - uses: actions/upload-artifact@v4
         with:
-          name: wallpapers-${{ matrix.target }}-${{ matrix.arch }}
+          name: pixelpaper-${{ matrix.target }}-${{ matrix.arch }}
           path: artifacts/*
   publish:
     needs: build
@@ -44,6 +44,8 @@ jobs:
         with:
           path: artifacts
           merge-multiple: true
+      - name: Write SHA-256 checksums
+        run: sha256sum artifacts/* > artifacts/SHA256SUMS.txt
       - uses: softprops/action-gh-release@v2
         with:
           files: artifacts/*

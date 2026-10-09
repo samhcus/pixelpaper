@@ -34,6 +34,14 @@ test('validates prompts and dimensions before contacting provider', async t => {
   }
   assert.equal(submitted, false)
 })
+test('rejects non-pixel directions and adds a pixel suffix before provider submission', async t => {
+  let submittedPrompt = ''
+  const s = await setup(t, { submit: async prompt => { submittedPrompt = prompt; return providerId } })
+  const rejected = await s.request('/api/generations', { prompt: 'A photorealistic photograph of a room', orientation: 'desktop' })
+  assert.equal(rejected.status, 400)
+  await s.submit()
+  assert.match(submittedPrompt, /pixel art only/)
+})
 test('creates one real job, redacts provider IDs, blocks duplicates, returns queue status', async t => {
   const s = await setup(t)
   const job = await s.submit()
