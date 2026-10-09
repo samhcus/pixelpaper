@@ -6,6 +6,7 @@ artifacts/
 !.env.example
 .data/
 *.tsbuildinfo
+__pycache__/
 playwright-report/
 test-results/
 .playwright-cli/
