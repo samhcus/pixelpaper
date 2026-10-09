@@ -1,30 +1,27 @@
 {
   "name": "pixelpaper",
   "private": true,
-  "version": "1.1.0",
-  "description": "A cozy pixel art wallpaper studio created with love by Samuel.",
+  "version": "2.0.0",
+  "description": "An offline pixel art creator for wallpapers, created with love by Samuel.",
   "author": {
     "name": "Samuel H. Cus",
     "email": "hello@samhc.us"
   },
   "type": "module",
   "scripts": {
-    "dev": "concurrently -k -n api,web \"node --env-file-if-exists=.env --watch server/index.mjs\" \"vite --host 127.0.0.1\"",
+    "dev": "vite --host 127.0.0.1",
     "assets": "node scripts/build_gallery.mjs",
     "build": "npm run build:app && tsc -b",
     "build:app": "npm run assets && vite build --mode app",
     "build:site": "npm run assets && vite build --mode site",
     "desktop:dist": "npm run build:app && electron-builder --config electron-builder.yml",
-    "start": "node --env-file-if-exists=.env server/index.mjs",
+    "start": "vite preview --host 127.0.0.1",
     "typecheck": "tsc -b",
-    "test": "node --test tests/*.test.mjs",
+    "test": "node --experimental-strip-types --test tests/*.test.mjs",
     "test:e2e": "playwright test",
     "test:site": "playwright test --config=playwright.download.config.ts"
   },
-  "dependencies": {
-    "express": "^5.2.1",
-    "sharp": "^0.35.5"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
     "@playwright/test": "^1.64.0",

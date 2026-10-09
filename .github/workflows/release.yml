@@ -45,7 +45,7 @@ jobs:
           path: artifacts
           merge-multiple: true
       - name: Write SHA-256 checksums
-        run: find artifacts -type f -print0 | sort -z | xargs -0 sha256sum > artifacts/SHA256SUMS.txt
+        run: find artifacts -maxdepth 1 -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > artifacts/SHA256SUMS.txt
       - uses: softprops/action-gh-release@v2
         with:
           files: artifacts/*

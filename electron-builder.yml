@@ -7,14 +7,10 @@ directories:
 asar: true
 files:
   - dist/**/*
-  - server/**/*
   - desktop/**/*
   - package.json
 extraMetadata:
   main: desktop/main.cjs
-asarUnpack:
-  - server/**/*
-  - node_modules/**/*
 mac:
   target: [dmg, zip]
   category: public.app-category.graphics-design
