@@ -5,7 +5,9 @@ on:
     branches:
       - main
     paths:
-      - 'nqita/**'
+      - 'ai-generated/**'
+      - 'ascii-art/**'
+      - 'space/**'
       - 'pixel-art/**'
       - 'scripts/**'
   workflow_dispatch:

@@ -1,0 +1,31 @@
+appId: us.samhc.wallpapers
+productName: Wallpapers
+artifactName: Wallpapers-${os}-${arch}.${ext}
+directories:
+  output: artifacts
+  buildResources: desktop
+asar: false
+files:
+  - dist/**/*
+  - server/**/*
+  - desktop/**/*
+  - public/**/*
+  - ai-generated/**/*
+  - ascii-art/**/*
+  - pixel-art/**/*
+  - space/**/*
+  - package.json
+extraMetadata:
+  main: desktop/main.cjs
+asarUnpack:
+  - node_modules/sharp/**/*
+  - node_modules/@img/**/*
+mac:
+  target: [dmg, zip]
+  category: public.app-category.graphics-design
+win:
+  target: [nsis, portable]
+linux:
+  target: [AppImage, deb]
+  category: Graphics
+  icon: desktop/icon.png

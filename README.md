@@ -11,6 +11,23 @@
 > [!NOTE]
 > This README is auto-generated. All files are named `<palette>-<subject>-<nn>.ext` so you can sort by color or vibe at a glance.
 
+## Wallpapers app
+
+Download the packaged desktop app from [wallpapers.samhc.us](https://wallpapers.samhc.us).
+The public site is only a static download page. The gallery, describe-a-new-image
+composer, local Creations storage, and free AI Horde generation run inside the app
+only while you have it open.
+
+To run the source version locally:
+
+```bash
+npm ci
+npm run dev
+```
+
+Open http://localhost:5173. No API key is required. See [APP.md](APP.md) for local
+startup, desktop packaging, storage, and verification.
+
 ## Showcase
 
 <table>

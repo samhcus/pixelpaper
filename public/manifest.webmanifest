@@ -1,0 +1,13 @@
+{
+  "name": "Wallpapers by Samuel",
+  "short_name": "Wallpapers",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#19434c",
+  "theme_color": "#19434c",
+  "description": "A simple wallpaper app created by Samuel.",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
