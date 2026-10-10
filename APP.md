@@ -35,4 +35,4 @@ npm run dev
 npm run desktop:dist
 ```
 
-Artifacts are written to `artifacts/`. The public release page is [wallpapers.samhc.us](https://wallpapers.samhc.us).
+Artifacts are written to `artifacts/`. The public release page is [pixelpaper.samhc.us](https://pixelpaper.samhc.us).

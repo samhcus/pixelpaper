@@ -4,17 +4,17 @@
 
 **An offline pixel art creator for wallpapers.**
 
-<code>draw · pixelate · export</code> &nbsp; <code>Desktop app · v2.0.0</code>
+<code>draw · pixelate · export</code> &nbsp; <code>Desktop app · v2.0.1</code>
 
 </div>
 
 Pixelpaper is a small, local pixel art studio for making desktop, phone, and square wallpapers. Draw on a compact grid, bring in a photo, reduce it to pixels, tune the palette, and export a wallpaper-sized PNG.
 
-There is no account, server, sync, subscription, or AI. The public [download page](https://wallpapers.samhc.us) is only a static home for the app and Samuel’s example library. A downloaded app starts with an empty shelf.
+There is no account, server, sync, subscription, or AI. The public [download page](https://pixelpaper.samhc.us) is only a static home for the app and Samuel’s example library. A downloaded app starts with an empty shelf.
 
 ## Download
 
-Download Pixelpaper at [wallpapers.samhc.us](https://wallpapers.samhc.us). Release packages include SHA-256 checksums. macOS and Windows packages are currently unsigned.
+Download Pixelpaper at [pixelpaper.samhc.us](https://pixelpaper.samhc.us). Release packages include SHA-256 checksums. macOS and Windows packages are currently unsigned.
 
 ## Run locally
 

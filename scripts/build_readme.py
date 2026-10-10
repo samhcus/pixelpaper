@@ -88,7 +88,7 @@ def main():
 
 ## Wallpapers app
 
-Download the packaged desktop app from [wallpapers.samhc.us](https://wallpapers.samhc.us).
+Download the packaged desktop app from [pixelpaper.samhc.us](https://pixelpaper.samhc.us).
 The public site is only a static download page. The gallery, describe-a-new-image
 composer, local Creations storage, and free AI Horde generation run inside the app
 only while you have it open.
