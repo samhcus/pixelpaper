@@ -2,19 +2,19 @@
 
 # Pixelpaper
 
-**An offline pixel art creator for wallpapers.**
+**An offline pixel art studio.**
 
-<code>draw · pixelate · export</code> &nbsp; <code>Desktop app · v2.1.0</code>
+<code>draw · pixelate · export</code> &nbsp; <code>Desktop app · v2.2.0</code>
 
 </div>
 
-Pixelpaper is a small, local pixel art studio for making desktop, phone, and square wallpapers. Draw on a compact grid, bring in a photo, reduce it to pixels, tune the palette, and export a wallpaper-sized PNG.
+Pixelpaper is a local pixel art studio. Draw on a compact grid, bring in a photo, reduce it to pixels, tune the palette, and export a PNG.
 
-There is no account, server, sync, subscription, or AI. The public [download page](https://pixelpaper.samhc.us) is a static PWA that can reopen after its first visit without a connection. A downloaded app starts with an empty shelf.
+There is no account, server, sync, subscription, or AI. The public [download page](https://pixelpaper.samhc.us) is a static PWA that can reopen after its first visit without a connection. A downloaded app starts with no saved art.
 
 ## Download
 
-Download Pixelpaper at [pixelpaper.samhc.us](https://pixelpaper.samhc.us). Stable releases include macOS, Windows, and Linux packages plus SHA-256 checksums. iOS and Android apps are coming soon; the current desktop app is the complete offline studio. macOS and Windows packages are currently unsigned.
+Download Pixelpaper at [pixelpaper.samhc.us](https://pixelpaper.samhc.us). Stable releases include macOS, Windows, and Linux packages plus SHA-256 checksums. iOS and Android are coming soon.
 
 ## Run locally
 
@@ -27,7 +27,7 @@ npm run dev
 
 Open `http://localhost:5173`.
 
-The local development build is the studio itself. It does not call a remote API. Imported photos are read in memory, saved walls use local browser storage, and PNG export happens in the renderer.
+The local development build is the studio itself. It does not call a remote API. Imported photos are read in memory, saved art uses local browser storage, and PNG export happens in the renderer.
 
 ## Package the desktop app
 
@@ -35,11 +35,21 @@ The local development build is the studio itself. It does not call a remote API.
 npm run desktop:dist
 ```
 
-The Electron app loads the built interface directly from its package. It has no local API server and makes no network requests. Your saved walls live in the app’s browser storage; imported photos are read in memory and are never uploaded. The renderer does all pixelation and export work locally.
+The Electron app loads the built interface directly from its package. It has no local API server and makes no network requests. Your saved art lives in the app’s browser storage; imported photos are read in memory and are never uploaded. The renderer does all pixelation and export work locally.
+
+## Agent tools
+
+Agents can draw through the same local, dependency-free tool contract as the studio:
+
+```bash
+npm run agent
+```
+
+Send JSON lines to stdin. See [AGENT_API.md](AGENT_API.md) for the tool list and request format.
 
 ## Pixelation algorithm
 
-Photo import runs in the renderer with the Canvas API. Pixelpaper crops the source to the selected wallpaper ratio, downsamples it to the target grid with nearest-neighbor sampling, builds a compact color palette with median-cut quantization, and maps each pixel to its nearest palette color. Export scales the grid with nearest-neighbor so edges stay crisp. The operation is deterministic and works without an internet connection.
+Photo import runs in the renderer with the Canvas API. Pixelpaper crops the source to the selected canvas ratio, downsamples it to the target grid with nearest-neighbor sampling, builds a compact color palette with median-cut quantization, and maps each pixel to its nearest palette color. Export scales the grid with nearest-neighbor so edges stay crisp. The operation is deterministic and works without an internet connection.
 
 ## Verify
 
@@ -57,7 +67,7 @@ npm run desktop:dist
 
 - `src/` — React studio and static download page.
 - `desktop/` — Electron entrypoint for the packaged offline app.
-- `pixel-art/`, `space/`, `ascii-art/`, `ai-generated/` — source examples used by the static page.
+- `src/studio/` and `AGENT_API.md` — the local agent contract and JSONL bridge.
 - `scripts/build_gallery.mjs` — creates local thumbnails and gallery metadata.
 - `scripts/build_service_worker.mjs` — precaches every built static asset for the PWA download page.
 - `RELEASE.md` — versioning, release, checksum, and publication procedure.

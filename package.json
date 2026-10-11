@@ -1,8 +1,8 @@
 {
   "name": "pixelpaper",
   "private": true,
-  "version": "2.1.0",
-  "description": "An offline pixel art creator for wallpapers, created with love by Samuel.",
+  "version": "2.2.0",
+  "description": "An offline pixel art studio with local agent tools.",
   "author": {
     "name": "Samuel H. Cus",
     "email": "hello@samhc.us"
@@ -19,7 +19,8 @@
     "typecheck": "tsc -b",
     "test": "node --experimental-strip-types --test tests/*.test.mjs",
     "test:e2e": "playwright test",
-    "test:site": "playwright test --config=playwright.download.config.ts"
+    "test:site": "playwright test --config=playwright.download.config.ts",
+    "agent": "node --experimental-strip-types scripts/pixelpaper-agent.mjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
