@@ -1,7 +1,7 @@
 {
   "name": "pixelpaper",
   "private": true,
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "An offline pixel art creator for wallpapers, created with love by Samuel.",
   "author": {
     "name": "Samuel H. Cus",
@@ -13,7 +13,7 @@
     "assets": "node scripts/build_gallery.mjs",
     "build": "npm run build:app && tsc -b",
     "build:app": "npm run assets && vite build --mode app",
-    "build:site": "npm run assets && vite build --mode site",
+    "build:site": "npm run assets && vite build --mode site && node scripts/build_service_worker.mjs",
     "desktop:dist": "npm run build:app && electron-builder --config electron-builder.yml",
     "start": "vite preview --host 127.0.0.1",
     "typecheck": "tsc -b",

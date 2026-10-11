@@ -9,7 +9,7 @@ async function bootstrap() {
   if (import.meta.env.MODE === 'site') {
     const { default: DownloadPage } = await import('./DownloadPage')
     root = <DownloadPage />
-    if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(() => undefined))
+    if ('serviceWorker' in navigator) { const register = () => navigator.serviceWorker.register('/sw.js').catch(() => undefined); if (document.readyState === 'complete') void register(); else window.addEventListener('load', register, { once: true }) }
   }
   createRoot(document.getElementById('root')!).render(<StrictMode>{root}</StrictMode>)
 }

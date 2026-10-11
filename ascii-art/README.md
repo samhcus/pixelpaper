@@ -1,6 +1,6 @@
 # ascii-art
 
-[ascii-art collection]
+[Image collection]
 
 <table>
   <tr>

@@ -1,6 +1,6 @@
 # ai-generated
 
-[ai-generated collection]
+[Image collection]
 
 <table>
   <tr>

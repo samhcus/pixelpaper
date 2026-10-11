@@ -1,6 +1,6 @@
 # pixel-art
 
-[pixel-art collection]
+[Image collection]
 
 <table>
   <tr>

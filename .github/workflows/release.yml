@@ -35,7 +35,12 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: pixelpaper-${{ matrix.target }}-${{ matrix.arch }}
-          path: artifacts/*
+          path: |
+            artifacts/*.dmg
+            artifacts/*.zip
+            artifacts/*.exe
+            artifacts/*.AppImage
+            artifacts/*.deb
   publish:
     needs: build
     runs-on: ubuntu-latest
@@ -45,8 +50,16 @@ jobs:
           path: artifacts
           merge-multiple: true
       - name: Write SHA-256 checksums
-        run: find artifacts -maxdepth 1 -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > artifacts/SHA256SUMS.txt
+        run: |
+          find artifacts -maxdepth 1 -type f \( -name '*.dmg' -o -name '*.zip' -o -name '*.exe' -o -name '*.AppImage' -o -name '*.deb' \) -print0 \
+            | sort -z | xargs -0 sha256sum > artifacts/SHA256SUMS.txt
       - uses: softprops/action-gh-release@v2
         with:
-          files: artifacts/*
+          files: |
+            artifacts/*.dmg
+            artifacts/*.zip
+            artifacts/*.exe
+            artifacts/*.AppImage
+            artifacts/*.deb
+            artifacts/SHA256SUMS.txt
           generate_release_notes: true

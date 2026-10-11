@@ -1,6 +1,6 @@
 # space
 
-[space collection]
+[Image collection]
 
 <table>
   <tr>

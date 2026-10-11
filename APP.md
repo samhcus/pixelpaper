@@ -20,7 +20,9 @@ Drop in or choose a PNG, JPG, WEBP, or GIF up to 15 MB. Pixelpaper processes it 
 
 ## Offline boundary
 
-The desktop app contains no Express server, AI provider, generation endpoint, or remote runtime dependency. Electron loads the bundled Vite build from disk with `contextIsolation`, `sandbox`, and `nodeIntegration: false`. The public site is a separate static download page.
+The desktop app contains no Express server, AI provider, generation endpoint, or remote runtime dependency. Electron loads the bundled Vite build from disk with `contextIsolation`, `sandbox`, and `nodeIntegration: false`. Pixelation, editing, local saves, and PNG export all run in the renderer. The public site is a separate static download page with a generated service-worker cache for its built assets.
+
+The offline boundary is intentional: the app does not sync drafts, upload photos, fetch examples, or contact a generation service. The shelf uses browser storage inside the app profile, so clearing that profile removes its local drafts.
 
 ## Local development
 
@@ -36,3 +38,7 @@ npm run desktop:dist
 ```
 
 Artifacts are written to `artifacts/`. The public release page is [pixelpaper.samhc.us](https://pixelpaper.samhc.us).
+
+## Release source of truth
+
+The version in `package.json` is the release version. `src/DownloadPage.tsx` reads that value for the public version badge and footer. See [RELEASE.md](RELEASE.md) for the tag, GitHub Actions, asset, checksum, and publication flow.
